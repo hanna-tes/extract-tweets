@@ -8,7 +8,7 @@ consumer_secret = 'xxx'
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth,wait_on_rate_limit=True)
-# Define the search term and the date_since date as variables
+# Define the search term variables
 def scraptweets(search_words, date_since, until_date, numtweets):
     df_tweets = pd.DataFrame(columns = ['username', 'accdescri', 'location', 'following',
                                         'followers', 'totaltweets', 'usercreateti', 'tweetcreateti',
@@ -21,7 +21,7 @@ def scraptweets(search_words, date_since, until_date, numtweets):
     tweet_list = [tweet for tweet in tweets]
     numtweets = 0
     for tweet in tweet_list:
-# Pull the values
+# call the values
             username = tweet.user.screen_name
             accdescri = tweet.user.description
             location = tweet.user.location
@@ -37,22 +37,21 @@ def scraptweets(search_words, date_since, until_date, numtweets):
                 text = tweet.full_text
                 ith_tweet = [username, accdescri, location, following, followers, totaltweets,
                          usercreateti, tweetcreateti, retweetcount, text]
-        # Append to dataframe - df_tweets
-
+                # Append to dataframe - df_tweets
                 df_tweets.loc[len(df_tweets)] = ith_tweet
-         # increase counter
+                # increase counts
                 numtweets += 1
     filename = 'scraped_tweets.csv'
       
            # save our data as a CSV file.
     df_tweets.to_csv(filename)
         
-# Initialise these variables:
+# Initialise the spcefic variables:
 search_words = '#TigrayGenocide'
 date_since = '2021-04-13'
 until_date = '2021-04-15'
 numtweets = 100
-# Call the function scraptweets
+# Call function scraptweets
 scraptweets(search_words, date_since, until_date, numtweets)
 
 
