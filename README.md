@@ -1,5 +1,7 @@
 # extract-tweets
 
+Here i extract tweet data from #tigraygenocide using Twitter API 
+
 To get started, you’ll need to do the following things:
 
 1, Set up a Twitter account if you don’t have one.
